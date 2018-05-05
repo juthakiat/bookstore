@@ -3,10 +3,8 @@
  */
 package com.scb.rest.bookstore.entity;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -15,10 +13,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
  * @author Juthakiat Tipchai
@@ -32,10 +32,10 @@ public class User {
 	@JsonIgnore
 	private Integer id;
 
-	@JsonIgnore
+	@NotNull
 	private String username;
-
-	@JsonIgnore
+	
+	@NotNull
 	private String password;
 
 	private String name;
@@ -43,8 +43,9 @@ public class User {
 	private String surname;
 
 	@Past
-	@JsonProperty("date_of_birth")
 	@Column(name = "date_of_birth")
+	@JsonProperty("date_of_birth")
+	@JsonDeserialize(using = CustomDateDeserializer.class)
 	private Date dateOfBirth;
 
 	@JsonIgnore
@@ -64,32 +65,48 @@ public class User {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public Integer getId() {
-		return id;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getPassword() {
-		return password;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getName() {
 		return name;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getSurname() {
 		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
-	
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
 	public Set<BookOrder> getOrders() {
 		return orders;
+	}
+
+	public void setOrders(Set<BookOrder> orders) {
+		this.orders = orders;
 	}
 
 	@Override
