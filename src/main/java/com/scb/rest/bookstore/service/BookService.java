@@ -5,6 +5,7 @@ package com.scb.rest.bookstore.service;
 
 import java.net.UnknownHostException;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
@@ -57,5 +58,20 @@ public class BookService {
 			b.setRecommended(isRecommended);
 			bookRepository.save(b);
 		}
+	}
+
+	public List<Book> findAll() {
+		return bookRepository.findAll();
+	}
+
+	/**
+	 * Find a book by specify id
+	 * @param id
+	 *            int
+	 * @return Book | null
+	 */
+	public Book findById(int id) {
+		Optional<Book> book = bookRepository.findById(id);
+		return (book.isPresent()) ? book.get() : null;
 	}
 }
