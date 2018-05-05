@@ -1,4 +1,4 @@
-package com.scb.rest.bookstore.repo;
+package com.scb.rest.bookstore.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

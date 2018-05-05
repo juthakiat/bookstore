@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.scb.rest.bookstore.repo;
+package com.scb.rest.bookstore.repository;
 
 import java.util.List;
 

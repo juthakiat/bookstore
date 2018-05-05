@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.scb.rest.bookstore;
+package com.scb.rest.bookstore.controller;
 
 import java.util.List;
 

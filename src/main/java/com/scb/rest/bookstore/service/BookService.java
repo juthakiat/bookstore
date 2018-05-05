@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import com.scb.rest.bookstore.entity.Book;
-import com.scb.rest.bookstore.repo.BookRepository;
+import com.scb.rest.bookstore.repository.BookRepository;
 
 /**
  * @author Juthakiat Tipchai

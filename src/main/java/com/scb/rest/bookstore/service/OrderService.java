@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.scb.rest.bookstore.entity.BookOrder;
-import com.scb.rest.bookstore.repo.OrderRepository;
+import com.scb.rest.bookstore.repository.OrderRepository;
 
 /**
  * @author Juthakiat Tipchai
