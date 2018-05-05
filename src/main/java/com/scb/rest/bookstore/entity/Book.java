@@ -3,10 +3,16 @@
  */
 package com.scb.rest.bookstore.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -32,6 +38,10 @@ public class Book {
 	@JsonProperty("is_recommended")
 	@Column(name = "is_recommended")
 	private boolean recommended;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "book", fetch = FetchType.LAZY)
+	private Set<BookOrder> orders = new HashSet<>();
 
 	public Book() {
 
@@ -66,6 +76,10 @@ public class Book {
 
 	public void setRecommended(boolean recommended) {
 		this.recommended = recommended;
+	}
+
+	public Set<BookOrder> getOrders() {
+		return orders;
 	}
 
 	@Override
