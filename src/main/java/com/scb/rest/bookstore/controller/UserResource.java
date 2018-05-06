@@ -1,11 +1,10 @@
 /**
- * 
+ *
  */
 package com.scb.rest.bookstore.controller;
 
 
 import java.security.Principal;
-import java.util.List;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -29,26 +28,26 @@ import com.scb.rest.bookstore.service.UserService;
  */
 @RestController
 public class UserResource {
-	
+
 	private UserService userService;
-	
+
 	private OrderService orderService;
-	
+
 	@Autowired
 	public UserResource(UserService userService, OrderService orderService) {
 		this.userService = userService;
 		this.orderService = orderService;
 	}
-	
+
 	/**
 	 * Create a user account and store user’s information in Users table
-	 * @param user
+	 * @param user User
 	 */
 	@PostMapping(path = "/users")
 	public void createUser(@Valid @RequestBody User user) {
 		userService.create(user);
 	}
-	
+
 	/**
 	 * Gets information about the logged in user. A successfully request returns information about the user and related books ordered.
 	 * @param principal
@@ -61,20 +60,20 @@ public class UserResource {
 		}
 		return user;
 	}
-	
+
 	/**
 	 * Delete logged in user’s record and order history.
+	 * @param principal
 	 */
 	@Transactional
 	@DeleteMapping(path = "/users")
 	public void deleteUser(Principal principal) {
-		User user = userService.findByUsername(principal.getName());
+		String username = principal.getName();
+		User user = userService.findByUsername(username);
 		if (user == null) {
-			throw new UserNotFoundException(principal.getName());
+			throw new UserNotFoundException(username);
 		}
-		// TODO: delete all user order history
 		orderService.deleteByUserId(user.getId());
-		// TODO: logged in delete user
 		userService.delete(user);
 	}
 }

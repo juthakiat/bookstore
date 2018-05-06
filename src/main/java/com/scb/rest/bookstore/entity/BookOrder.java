@@ -13,21 +13,21 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class BookOrder {
-	
+
 	@Id
 	@GeneratedValue
 	@JsonIgnore
 	private Integer id;
-	
+
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
-    @ManyToOne
-    private User user;
-	
-    @JoinColumn(name = "book_id", referencedColumnName = "id")
-    @ManyToOne
-    private Book book;
-    
-    @Column(name = "order_date")
+	@ManyToOne
+	private User user;
+
+	@JoinColumn(name = "book_id", referencedColumnName = "id")
+	@ManyToOne
+	private Book book;
+
+	@Column(name = "order_date")
 	private Date orderDate;
 
 	public BookOrder() {
@@ -55,5 +55,4 @@ public class BookOrder {
 	public Date getOrderDate() {
 		return orderDate;
 	}
-	
 }

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.scb.rest.bookstore.controller;
 
@@ -34,11 +34,11 @@ public class OrderResource {
 	private static final Logger LOG = LogManager.getLogger(UserService.class);
 
 	private UserService userService;
-	
+
 	private BookService bookService;
-	
+
 	private OrderService orderService;
-	
+
 	@Autowired
 	public OrderResource(UserService userService, BookService bookService, OrderService orderService) {
 		this.userService = userService;
@@ -47,9 +47,8 @@ public class OrderResource {
 	}
 
 	/**
-	 * Order books and store order information in Orders table (DB). This returns the price for a 
-successful order.
-	 * @return
+	 * Order books and store order information in Orders table (DB). This returns the price for a successful order.
+	 * @return Quote
 	 */
 	@Transactional
 	@PostMapping(path = "/users/orders")

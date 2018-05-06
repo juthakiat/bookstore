@@ -18,8 +18,7 @@ import java.io.IOException;
 public class SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
 	@Override
-	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-			Authentication authentication) throws IOException, ServletException {
+	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 
 		if ("application/json".equals(request.getHeader("Content-Type"))) {
 			// We need to override behavior when authentication success. Upon success,

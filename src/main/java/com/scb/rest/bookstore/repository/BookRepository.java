@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.scb.rest.bookstore.repository;
 
@@ -15,8 +15,8 @@ import com.scb.rest.bookstore.entity.Book;
  *
  */
 public interface BookRepository extends JpaRepository<Book, Integer> {
-	
-	@Query("SELECT b FROM Book b ORDER BY is_recommended DESC, book_name ASC") 
+
+	@Query("SELECT b FROM Book b ORDER BY is_recommended DESC, id ASC")
 	List<Book> findAll();
-	
+
 }

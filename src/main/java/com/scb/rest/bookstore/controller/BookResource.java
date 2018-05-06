@@ -25,7 +25,8 @@ public class BookResource {
 	}
 
 	/**
-	 * Returns the list sorted alphabetically with the recommended books always appears first. There should be no duplicated books in the list.
+	 * Returns the list sorted alphabetically with the recommended books always appears first.
+	 * @return Books
 	 */
 	@GetMapping(path = "/books")
 	public Books getBooks() {

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.scb.rest.bookstore.exception;
 
@@ -13,13 +13,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.CONFLICT)
 public class UserAlreadyExistsException extends RuntimeException {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	public UserAlreadyExistsException(String username) {
-		super("The user \'" + username + "\' is already exists");
+	public UserAlreadyExistsException(String message) {
+		super("The user \'" + message + "\' is already exists");
 	}
 
 }

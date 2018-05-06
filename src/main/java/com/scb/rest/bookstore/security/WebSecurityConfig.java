@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 * @return Password encoder
 	 */
 	@Bean
-	public BCryptPasswordEncoder getPasswordEncrypter() {
+	public BCryptPasswordEncoder getPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	};
 
@@ -70,7 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// Use our own user details service instead of the default one since we need to
 		// use our own database to store our user credentials and use the specific
 		// password encoder
-		auth.userDetailsService(userDetailsService()).passwordEncoder(getPasswordEncrypter());
+		auth.userDetailsService(userDetailsService()).passwordEncoder(getPasswordEncoder());
 	}
 
 	@Override

@@ -1,7 +1,5 @@
 package com.scb.rest.bookstore;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.scb.rest.bookstore.entity.Book;
-import com.scb.rest.bookstore.entity.BookOrder;
-import com.scb.rest.bookstore.entity.User;
 import com.scb.rest.bookstore.service.BookService;
 import com.scb.rest.bookstore.service.OrderService;
 import com.scb.rest.bookstore.service.UserService;
@@ -41,8 +37,8 @@ public class BookstoreApplication {
 				bookService.createBooks(books, true);
 			}
 
+			/*
 			// Create a new user 'John Doe'
-			// TODO: Encrypt the password before saving
 			User user = userService.create(new User("john.doe", "thisismysecret", "John", "Doe",
 					new SimpleDateFormat("dd/MM/yyyy").parse("15/01/1985")));
 
@@ -56,6 +52,7 @@ public class BookstoreApplication {
 			if (book != null) {
 				orderService.create(new BookOrder(user, book, orderDate));
 			}
+			*/
 		};
 	}
 }

@@ -14,76 +14,72 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 /**
- * Refer to the assignment, the login credential must be JSON data in POST request.
- * So I need to create a custom filter to intercept the authentication process to read
+ * Create a custom filter to intercept the authentication process to read
  * login credential from the JSON instead of form data.
  */
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-    private String jsonUsername;
-    
-    private String jsonPassword;
+	private String jsonUsername;
 
-    @Override
-    protected String obtainPassword(HttpServletRequest request) {
-        String password = null;
-        if ("application/json".equals(request.getHeader("Content-Type"))) {
-            password = this.jsonPassword;
-        }else{
-            password = super.obtainPassword(request);
-        }
+	private String jsonPassword;
 
-        return password;
-    }
+	@Override
+	protected String obtainPassword(HttpServletRequest request) {
+		String password = null;
+		if ("application/json".equals(request.getHeader("Content-Type"))) {
+			password = this.jsonPassword;
+		}else{
+			password = super.obtainPassword(request);
+		}
 
-    @Override
-    protected String obtainUsername(HttpServletRequest request){
-        String username = null;
+		return password;
+	}
 
-        if ("application/json".equals(request.getHeader("Content-Type"))) {
-            username = this.jsonUsername;
-        }else{
-            username = super.obtainUsername(request);
-        }
+	@Override
+	protected String obtainUsername(HttpServletRequest request){
+		String username = null;
 
-        return username;
-    }
+		if ("application/json".equals(request.getHeader("Content-Type"))) {
+			username = this.jsonUsername;
+		}else{
+			username = super.obtainUsername(request);
+		}
 
-    @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response){
-        if ("application/json".equals(request.getHeader("Content-Type"))) {
-            try {
-                StringBuffer sb = new StringBuffer();
-                String line = null;
+		return username;
+	}
 
-                BufferedReader reader = request.getReader();
-                while ((line = reader.readLine()) != null){
-                    sb.append(line);
-                }
+	@Override
+	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response){
+		if ("application/json".equals(request.getHeader("Content-Type"))) {
+			try {
+				StringBuffer sb = new StringBuffer();
+				String line = null;
 
-                // JSON deserialization to User object
-                ObjectMapper mapper = new ObjectMapper();
-                User user = mapper.readValue(sb.toString(), User.class);
+				BufferedReader reader = request.getReader();
+				while ((line = reader.readLine()) != null){
+					sb.append(line);
+				}
 
-                // Extract username and password and save into
-                // our private fields
-                this.jsonUsername = user.getUsername();
-                this.jsonPassword = user.getPassword();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+				ObjectMapper mapper = new ObjectMapper();
+				User user = mapper.readValue(sb.toString(), User.class);
 
-        return super.attemptAuthentication(request, response);
-    }
+				this.jsonUsername = user.getUsername();
+				this.jsonPassword = user.getPassword();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 
-    @Override
-    protected void successfulAuthentication(HttpServletRequest request,
-                                            HttpServletResponse response,
-                                            FilterChain chain,
-                                            Authentication authentication)
-            throws IOException, ServletException {
+		return super.attemptAuthentication(request, response);
+	}
 
-        super.successfulAuthentication(request, response, chain, authentication);
-    }
+	@Override
+	protected void successfulAuthentication(HttpServletRequest request,
+											HttpServletResponse response,
+											FilterChain chain,
+											Authentication authentication)
+			throws IOException, ServletException {
+
+		super.successfulAuthentication(request, response, chain, authentication);
+	}
 }

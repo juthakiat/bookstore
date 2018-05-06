@@ -6,10 +6,14 @@ The API that allows users to login, perform user related tasks, view a list of b
 
 ![Database Design](https://github.com/juthakiat/temp/blob/master/db_design/DB_DESIGN.png?raw=true "Database Design")
 
+# API Document
+
+You can find the [API Document](https://raw.githubusercontent.com/juthakiat/temp/master/api-docs.json) here or [http://localhost:8080/v2/api-docs](http://localhost:8080/v2/api-docs)
+
 # Sequence Diagram
 
 **GET /books**
-Gets a list of books from an external book publisher’s web services and returns the list sorted alphabetically with the recommended books always appears first
+Gets a list of books from an external book publisher’s web services and returns the list sorted alphabetically with the recommended books always appears first.
 ![GET /books](https://github.com/juthakiat/temp/blob/master/sequence_diagram/GET%20:books.png?raw=true "GET /books")
 
 **POST /user**
@@ -32,6 +36,3 @@ Order books and store order information in Orders table (BOOK_ORDER). This retur
 Delete logged in user’s record and order history.
 ![DELETE /users](https://github.com/juthakiat/temp/blob/master/sequence_diagram/DELETE%20:users.png?raw=true "DELETE /users")
 
-# API Document
-
-You can find the [API Document](https://raw.githubusercontent.com/juthakiat/temp/master/api-docs.json) here.
