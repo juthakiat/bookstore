@@ -31,17 +31,18 @@ import com.scb.rest.bookstore.vo.Quote;
 @RestController
 public class OrderResource {
 
-private UserService userService;
-	
 	private static final Logger LOG = LogManager.getLogger(UserService.class);
 
+	private UserService userService;
+	
 	private BookService bookService;
 	
 	private OrderService orderService;
 	
 	@Autowired
-	public OrderResource(UserService userService, OrderService orderService) {
+	public OrderResource(UserService userService, BookService bookService, OrderService orderService) {
 		this.userService = userService;
+		this.bookService = bookService;
 		this.orderService = orderService;
 	}
 
