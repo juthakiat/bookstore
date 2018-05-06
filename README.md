@@ -10,77 +10,28 @@ The API that allows users to login, perform user related tasks, view a list of b
 
 **GET /books**
 Gets a list of books from an external book publisher’s web services and returns the list sorted alphabetically with the recommended books always appears first
-```mermaid
-sequenceDiagram
-Client ->> Server: GET /books
-Server-->> Client: 200 SUCESS: { books: [ { }, ...] }
-```
+![GET /books](https://github.com/juthakiat/temp/blob/master/sequence_diagram/GET%20:books.png?raw=true "GET /books")
 
 **POST /user**
 Create a user account and store user’s information in Users table (DB).
-```mermaid
-sequenceDiagram
-Client ->> Server: POST /users
-Server ->> Server: Is parameters valid? (false)
-Server-->> Client: 400 BAD REQUEST
-Client ->> Server: POST /users
-Server ->> Server: Is parameters valid? (true)
-Server ->> Server: Is username already exists? (true)
-Server-->> Client: 409 CONFLICT
-Client ->> Server: POST /users
-Server ->> Server: Is parameters valid? (true)
-Server ->> Server: Is username already exists? (false)
-Server-->> Client: 200 SUCCESS
-```
+![POST /users](https://github.com/juthakiat/temp/blob/master/sequence_diagram/POST%20:users.png?raw=true "POST /users")
 
-**GET /login**
+**POST /login**
 User login authentication API.
-```mermaid
-sequenceDiagram
-Client ->> Server: GET /login
-Server ->> Server: Is username/password correct? (false)
-Server-->> Client: 401 UNAUTHORIZED
-Client ->> Server: GET /users
-Server ->> Server: Is username/password correct? (true)
-Server-->> Client: 200 SUCESS
-```
+![POST /login](https://github.com/juthakiat/temp/blob/master/sequence_diagram/POST%20:login.png?raw=true "POST /login")
 
 **GET /users**
 Gets information about the logged in user. A successfully authenticated request returns information related to the user and the books ordered
-```mermaid
-sequenceDiagram
-Client ->> Server: GET /users
-Server ->> Server: Is permission granted? (false)
-Server-->> Client: 401 UNAUTHORIZED
-Client ->> Server: GET /users
-Server ->> Server: Is permission granted? (true)
-Server-->> Client: 200 SUCESS: { name: "John", ... }
-```
+![GET /users](https://github.com/juthakiat/temp/blob/master/sequence_diagram/POST%20:login.png?raw=true "GET /users")
 
 **POST /users/orders**
 Order books and store order information in Orders table (BOOK_ORDER). This returns the total price for a successful order
-```mermaid
-sequenceDiagram
-Client ->> Server: POST /users/orders
-Server ->> Server: Is the book exists? (false)
-Server-->> Client: 200 SUCCESS: { price: 0.0 }
-Client ->> Server: GET /users/orders
-Server ->> Server: Is the book exists? (true)
-Server ->> Server: Calculate the price?
-Server-->> Client: 200 SUCCESS: { price: 250.50 }
-```
+![POST /users/orders](https://github.com/juthakiat/temp/blob/master/sequence_diagram/POST%20:users:orders.png?raw=true "POST /users/orders")
 
 **DELETE /users**
 Delete logged in user’s record and order history.
-```mermaid
-sequenceDiagram
-Client ->> Server: DELETE /users
-Server ->> Server: Remove all related orders
-Server ->> Server: Remove user
-Server-->> Client: 200 SUCCESS
-```
+![DELETE /users](https://github.com/juthakiat/temp/blob/master/sequence_diagram/DELETE%20:users.png?raw=true "DELETE /users")
 
 # API Document
 
 You can find the [API Document](https://raw.githubusercontent.com/juthakiat/temp/master/api-docs.json) here.
-
