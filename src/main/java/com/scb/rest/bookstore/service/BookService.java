@@ -28,7 +28,6 @@ public class BookService {
 
 	@Autowired
 	public BookService(BookRepository bookRepository) {
-		super();
 		this.bookRepository = bookRepository;
 	}
 
@@ -67,10 +66,10 @@ public class BookService {
 	/**
 	 * Find a book by specify id
 	 * @param id
-	 *            int
+	 *            Integer
 	 * @return Book | null
 	 */
-	public Book findById(int id) {
+	public Book findById(Integer id) {
 		Optional<Book> book = bookRepository.findById(id);
 		return (book.isPresent()) ? book.get() : null;
 	}
