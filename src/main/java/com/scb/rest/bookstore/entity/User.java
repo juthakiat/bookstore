@@ -9,7 +9,6 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -18,7 +17,9 @@ import javax.validation.constraints.Past;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.scb.rest.bookstore.entity.serializer.CustomDateDeserializer;
 
 /**
  * @author Juthakiat Tipchai
@@ -33,9 +34,11 @@ public class User {
 	private Integer id;
 
 	@NotNull
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private String username;
 	
 	@NotNull
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private String password;
 
 	private String name;
@@ -49,7 +52,7 @@ public class User {
 	private Date dateOfBirth;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "user")
     private Set<BookOrder> orders = new HashSet<>();
 
 	public User() {
@@ -65,12 +68,24 @@ public class User {
 		this.dateOfBirth = dateOfBirth;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
 	}
 
 	public void setPassword(String password) {
