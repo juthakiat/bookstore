@@ -1,4 +1,4 @@
-package com.scb.rest.bookstore.entity;
+package com.scb.rest.bookstore.entity.serializer;
 
 import java.io.IOException;
 import java.text.ParseException;
