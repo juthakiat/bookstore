@@ -3,8 +3,10 @@
  */
 package com.scb.rest.bookstore.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -53,7 +55,7 @@ public class User {
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
-    private Set<BookOrder> orders = new HashSet<>();
+	private Set<BookOrder> orders = new HashSet<>();
 
 	public User() {
 
@@ -122,6 +124,14 @@ public class User {
 
 	public void setOrders(Set<BookOrder> orders) {
 		this.orders = orders;
+	}
+
+	public List<Integer> getBooks() {
+		List<Integer> books = new ArrayList<>();
+		for (BookOrder order : orders) {
+			books.add(order.getBook().getId());
+		}
+		return books;
 	}
 
 	@Override
