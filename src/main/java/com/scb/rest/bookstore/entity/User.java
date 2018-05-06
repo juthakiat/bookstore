@@ -4,6 +4,7 @@
 package com.scb.rest.bookstore.entity;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -131,6 +132,7 @@ public class User {
 		for (BookOrder order : orders) {
 			books.add(order.getBook().getId());
 		}
+		Collections.sort(books);
 		return books;
 	}
 
