@@ -20,11 +20,14 @@ public class OrderService {
 
 	@Autowired
 	public OrderService(OrderRepository orderRepository) {
-		super();
 		this.orderRepository = orderRepository;
 	}
 
 	public BookOrder create(BookOrder order) {
 		return orderRepository.save(order);
+	}
+	
+	public void deleteByUserId(Integer id) {
+		orderRepository.deleteByUserId(id);
 	}
 }
