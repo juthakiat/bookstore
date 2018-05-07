@@ -32,6 +32,7 @@ You can find the [API Document](https://raw.githubusercontent.com/juthakiat/temp
 **GET /books**
 
 Gets a list of books from an external book publisher’s web services and returns the list sorted alphabetically with the recommended books always appears first.
+
 <img src="https://github.com/juthakiat/temp/blob/master/sequence_diagram/GET%20:books.png?raw=true" width="400" alt="GET /book" />
 
 **POST /user**
